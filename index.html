@@ -1137,7 +1137,194 @@
                 padding: 25px;
             }
         }
-    </style>
+    
+
+.cart-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  opacity: 0; visibility: hidden;
+  transition: 0.3s;
+  z-index: 999;
+}
+.cart-overlay.active {
+  opacity: 1; visibility: visible;
+}
+.cart-sidebar {
+  position: fixed;
+  top: 0; right: -400px;
+  width: 360px; height: 100%;
+  background: var(--card-bg);
+  box-shadow: -4px 0 15px rgba(0,0,0,0.25);
+  transition: 0.3s ease;
+  z-index: 1000;
+  display: flex; flex-direction: column;
+}
+.cart-sidebar.active {
+  right: 0;
+}
+.cart-sidebar h2 {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin: 0;
+}
+.close-cart {
+  background: none; border: none;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  color: var(--text-dark);
+  position: absolute;
+  top: 10px; right: 10px;
+}
+#cartItems {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+.cart-item img {
+  width: 45px; height: 45px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 4px;
+  box-shadow: var(--shadow-sm);
+}
+.cart-item .details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.cart-item .name {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+.cart-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+.qty-btn {
+  width: 24px; height: 24px;
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+  background: var(--background-light);
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+}
+.remove-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: var(--error-color);
+  cursor: pointer;
+  margin-left: auto;
+}
+.cart-footer {
+  border-top: 1px solid var(--border-color);
+  padding: 15px;
+  background: var(--card-bg);
+}
+.cart-footer p {
+  display: flex; justify-content: space-between;
+  font-weight: 600; margin-bottom: 12px;
+  font-size: 15px;
+}
+.checkout-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+.checkout-btn:hover {
+  background: var(--secondary-color);
+}
+
+
+
+.clear-btn {
+  background: transparent;
+  color: var(--error-color);
+  border: 1px solid var(--border-color);
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.clear-btn:hover {
+  background: rgba(211,47,47,0.06);
+}
+.add-to-cart[disabled] {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+
+/* Text color for cart panel in light mode */
+.cart-sidebar {
+    color: var(--text-dark);
+}
+
+/* Text color for cart panel in dark mode */
+.dark-mode .cart-sidebar {
+    color: var(--text-light);
+}
+
+
+/* Grey color for quantity buttons in dark mode */
+.dark-mode .qty-btn {
+    background-color: var(--border-color);
+    color: var(--text-light);
+}
+
+
+/* Improve mobile category tabs */
+.category-tabs {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border-color);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    scrollbar-width: none; /* hide scrollbar in Firefox */
+    gap: 10px;
+    padding: 0 10px 10px;
+}
+.category-tabs::-webkit-scrollbar {
+    display: none; /* hide scrollbar in Chrome/Safari */
+}
+.category-tab {
+    flex: 0 0 auto; /* prevent shrinking */
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-light);
+    white-space: nowrap;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+</style>
 </head>
 <body>
     <!-- Top Bar -->
@@ -1247,44 +1434,6 @@
         </div>
     </section>
     
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>What Our Customers Say</h2>
-                <p>Hear from satisfied customers about our premium organic products</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <p>"The freshest pistachios I've ever tasted! Authentic Afghan quality, delivered quickly to Toronto."</p>
-                    <div class="testimonial-author">- Sarah L., Toronto</div>
-                </div>
-                <div class="testimonial-card">
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <p>"Excellent variety of nuts and raisins. The roasting is perfect, and free shipping made it even better."</p>
-                    <div class="testimonial-author">- Mike R., Scarborough</div>
-                </div>
-                <div class="testimonial-card">
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <i class="fas fa-star" aria-hidden="true"></i>
-                    <p>"Love the organic selection. Walnuts and figs are top-notch—highly recommend for healthy snacking."</p>
-                    <div class="testimonial-author">- Aisha K., Ottawa</div>
-                </div>
-            </div>
-        </div>
-    </section>
     
     <!-- Products Section -->
     <section class="categories-section" id="products">
@@ -1411,11 +1560,62 @@
                     <button type="submit" class="submit-btn">Send Message</button>
                 </form>
             </div>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2884.234!2d-79.286!3d43.807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4d1c4b0b0b0b0%3A0x0!2s3451%20McNicoll%20Ave%2C%20Scarborough%2C%20ON%20M1V%202V3%2C%20Canada!5e0!3m2!1sen!2sus!4v1725840000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <div class="map-container">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d288986.123!2d-79.639319!3d43.653225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cb2e5a7a6f5f%3A0x444cd8d8f9c2d8b4!2sToronto%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sca!4v1726572000000" 
+    width="100%" 
+    height="100%" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+<p style="text-align:center; margin-top:10px; font-weight:600; color:#31572c;">
+  Available across all of Toronto!
+</p>
+
+   
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Hear from satisfied customers about our premium organic products</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <p>"The freshest pistachios I've ever tasted! Authentic Afghan quality, delivered quickly to Toronto."</p>
+                    <div class="testimonial-author">- Sarah L., Toronto</div>
+                </div>
+                <div class="testimonial-card">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <p>"Excellent variety of nuts and raisins. The roasting is perfect, and free shipping made it even better."</p>
+                    <div class="testimonial-author">- Mike R., Scarborough</div>
+                </div>
+                <div class="testimonial-card">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <p>"Love the organic selection. Walnuts and figs are top-notch—highly recommend for healthy snacking."</p>
+                    <div class="testimonial-author">- Aisha K., Ottawa</div>
+                </div>
             </div>
         </div>
     </section>
+    
     
     <!-- Footer -->
     <footer>
@@ -1467,55 +1667,73 @@
                 <p>&copy; 2025 Shah Dry Fruits. Made by TYF Sadik All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
             </div>
         </div>
-    </footer>
+    
+<!-- Cart Overlay -->
+<div id="cartOverlay" class="cart-overlay"></div>
+
+<!-- Cart Sidebar -->
+<div id="cartSidebar" class="cart-sidebar">
+  <button id="closeCart" class="close-cart">&times;</button>
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  
+<div class="cart-footer">
+  <p>Total: <span id="cartTotal">$0.00</span></p>
+  <div style="display:flex; gap:8px;">
+    <button id="clearCartBtn" class="clear-btn">Clear All</button>
+    <button class="checkout-btn">Checkout</button>
+  </div>
+</div>
+
+</div></footer>
 
     <script>
         // Product data with high-quality images
         const products = [
             // Beverages
-            { id: 1, name: 'Rani Mango', category: 'beverages', price: 3.99, image: 'https://images.unsplash.com/photo-1546173159-315724a31696?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Fresh mango flavored beverage', badge: 'Bestseller' },
-            { id: 2, name: 'Rani Peach', category: 'beverages', price: 3.99, image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Sweet peach flavored beverage' },
-            { id: 3, name: 'Rani Pineapple', category: 'beverages', price: 3.99, image: 'https://images.unsplash.com/photo-1587883012617-8597d614fb76?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Tropical pineapple flavored beverage' },
-            { id: 4, name: 'Rani Orange', category: 'beverages', price: 3.99, image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Fresh orange flavored beverage' },
+            { id: 1, name: 'Rani Mango', category: 'beverages', price: 3.99, image: 'https://i.pinimg.com/736x/b8/d6/bb/b8d6bba7446b6d773f57ca2fec91b305.jpg', description: 'Fresh mango flavored beverage', badge: 'Bestseller' },
+            { id: 2, name: 'Rani Peach', category: 'beverages', price: 3.99, image: 'https://i0.wp.com/www.albazaarmarket.com/wp-content/uploads/2024/07/Rani-Natural-Peach-Float-Drink-240-ml-6-pack-5.jpg?fit=1080%2C1080&ssl=1', description: 'Sweet peach flavored beverage' },
+            { id: 3, name: 'Rani Pineapple', category: 'beverages', price: 3.99, image: 'https://i.pinimg.com/736x/af/ab/6a/afab6a8d1de9485e80a92714b6acf52e.jpg', description: 'Tropical pineapple flavored beverage' },
+            { id: 4, name: 'Rani Orange', category: 'beverages', price: 3.99, image: 'https://farwaycompany.com/wp-content/uploads/2021/02/Rani.jpg', description: 'Fresh orange flavored beverage' },
             // Tea
-            { id: 5, name: 'Super Green Tea', category: 'tea', price: 7.99, image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Unit Price: $7.99', badge: 'Popular' },
-            { id: 6, name: 'Gunpowder Green Tea', category: 'tea', price: 8.99, image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Unit Price: $8.99' },
-            { id: 7, name: 'Original Green Tea', category: 'tea', price: 7.49, image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Unit Price: $7.49' },
-            { id: 8, name: 'Cardamom Black Tea', category: 'tea', price: 8.49, image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Unit Price: $8.49' },
-            { id: 9, name: 'Ceylon Black Tea', category: 'tea', price: 7.99, image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Unit Price: $7.99' },
-            { id: 10, name: 'Earl Grey Black Tea', category: 'tea', price: 8.29, image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Unit Price: $8.29' },
-            { id: 38, name: 'Green Tea', category: 'tea', price: 3.49, image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Premium green tea' },
-            { id: 39, name: 'Black Tea', category: 'tea', price: 3.49, image: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Classic black tea' },
+            { id: 5, name: 'Super Green Tea', category: 'tea', price: 7.99, image: 'https://cdn1.vitalchoice.com/wcsstore/VitalChoice/images/catalog/24_60827_85KV_36_009x.jpg', description: 'Unit Price: $7.99', badge: 'Popular' },
+            { id: 6, name: 'Gunpowder Green Tea', category: 'tea', price: 8.99, image: 'https://www.harney.com/cdn/shop/articles/harney-blog-gunpowder-1.jpg?v=1631915390&width=1024', description: 'Unit Price: $8.99' },
+            { id: 7, name: 'Original Green Tea', category: 'tea', price: 7.49, image: 'https://images.othoba.com/images/thumbs/0857693_dr-hh-natural-green-tea-40-tea-bag.jpeg', description: 'Unit Price: $7.49' },
+            { id: 8, name: 'Cardamom Black Tea', category: 'tea', price: 8.49, image: 'https://www.staneswellness.com/cdn/shop/files/StanesCardamomTea_1120x.jpg?v=1725880213', description: 'Unit Price: $8.49' },
+            { id: 9, name: 'Ceylon Black Tea', category: 'tea', price: 7.99, image: 'https://shop.dilmahtea.com/cdn/shop/articles/14_a_quick_guide_to_ceylon_tea.jpg?v=1642829596', description: 'Unit Price: $7.99' },
+            { id: 10, name: 'Earl Grey Black Tea', category: 'tea', price: 8.29, image: 'https://favatea.com/wp-content/uploads/2013/07/Earl-Gray_WEB_V1.jpg', description: 'Unit Price: $8.29' },
+            { id: 38, name: 'Green Tea', category: 'tea', price: 3.49, image: 'https://m.media-amazon.com/images/I/61tCIeSY81L._SL1100_.jpg', description: 'Premium green tea' },
+            { id: 39, name: 'Black Tea', category: 'tea', price: 3.49, image: 'https://onorestaurants.com/wp-content/uploads/2024/07/Black-Tea.jpg', description: 'Classic black tea' },
             // Nuts
-            { id: 11, name: 'Almonds - Natural', category: 'nuts', price: 10.99, oldPrice: 12.99, image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $10.99', badge: 'Bestseller' },
-            { id: 12, name: 'Almonds in Shell Roasted', category: 'nuts', price: 12.99, oldPrice: 14.99, image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $12.99' },
-            { id: 13, name: 'Sugar Coated Almonds', category: 'nuts', price: 13.99, oldPrice: 15.99, image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $13.99' },
-            { id: 14, name: 'Walnuts', category: 'nuts', price: 9.99, oldPrice: 11.99, image: 'https://images.unsplash.com/photo-1603052875180-e1e10e5a0b36?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $9.99' },
-            { id: 15, name: 'Pistachios Roasted', category: 'nuts', price: 11.99, oldPrice: 13.99, image: 'https://images.unsplash.com/photo-1594489573454-3a9e7b2c4ed3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $11.99' },
-            { id: 16, name: 'Pistachios Saffron', category: 'nuts', price: 16.99, oldPrice: 18.99, image: 'https://images.unsplash.com/photo-1594489573454-3a9e7b2c4ed3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $16.99' },
-            { id: 17, name: 'Pistachios Unsalted', category: 'nuts', price: 10.99, oldPrice: 12.99, image: 'https://images.unsplash.com/photo-1594489573454-3a9e7b2c4ed3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $10.99' },
-            { id: 18, name: 'Pistachios Salted', category: 'nuts', price: 10.99, oldPrice: 12.99, image: 'https://images.unsplash.com/photo-1594489573454-3a9e7b2c4ed3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $10.99' },
-            { id: 19, name: 'Cashews Roasted', category: 'nuts', price: 12.99, oldPrice: 14.99, image: 'https://images.unsplash.com/photo-1526318472351-c75fcf070305?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $12.99' },
-            { id: 20, name: 'Cashews White', category: 'nuts', price: 14.99, oldPrice: 16.99, image: 'https://images.unsplash.com/photo-1526318472351-c75fcf070305?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $14.99' },
-            { id: 32, name: 'Roasted Pine Nuts', category: 'nuts', price: 16.99, oldPrice: 18.99, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ad5e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $16.99' },
-            { id: 28, name: 'Sunflower Seeds', category: 'nuts', price: 5.99, oldPrice: 6.99, image: 'https://images.unsplash.com/photo-1591033594798-33227a05780d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $5.99' },
-            { id: 29, name: 'Pumpkin Seeds', category: 'nuts', price: 6.99, oldPrice: 7.99, image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d5a52?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $6.99' },
-            { id: 30, name: 'Melon Seeds', category: 'nuts', price: 5.99, oldPrice: 6.99, image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $5.99' },
-            { id: 21, name: 'Chickpeas Roasted', category: 'nuts', price: 6.99, oldPrice: 7.99, image: 'https://images.unsplash.com/photo-1543339302-43ffd238eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $6.99' },
-            { id: 22, name: 'Chickpeas', category: 'nuts', price: 5.99, oldPrice: 6.99, image: 'https://images.unsplash.com/photo-1543339302-43ffd238eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $5.99' },
-            { id: 23, name: 'Sugar Coated Chickpeas', category: 'nuts', price: 7.99, oldPrice: 8.99, image: 'https://images.unsplash.com/photo-1543339302-43ffd238eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $7.99' },
-            { id: 31, name: 'Corn', category: 'nuts', price: 1.99, image: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $1.99' },
+            { id: 11, name: 'Almonds - Natural', category: 'nuts', price: 10.99, oldPrice: 12.99, image: 'https://www.bryantfoods.co.uk/wp-content/uploads/2020/09/70009-Natural-Almonds.jpg', description: 'Stand-Up Pouch: $10.99', badge: 'Bestseller' },
+            { id: 12, name: 'Almonds in Shell Roasted', category: 'nuts', price: 12.99, oldPrice: 14.99, image: 'https://www.stewartandjasper.com/wp-content/uploads/2023/09/In-shell-Roasted-Salted-Almonds-1024x683.jpg', description: 'Stand-Up Pouch: $12.99' },
+            { id: 13, name: 'Sugar Coated Almonds', category: 'nuts', price: 13.99, oldPrice: 15.99, image: 'https://joyfoodsunshine.com/wp-content/uploads/2020/10/candied-almonds-recipe-1x1-1.jpg', description: 'Stand-Up Pouch: $13.99' },
+            { id: 14, name: 'Walnuts', category: 'nuts', price: 9.99, oldPrice: 11.99, image: 'https://naturalchoice.co.uk/cdn/shop/products/wanuts_inshell_33a79388-e3dc-464f-b95c-c711476db9d4_grande.jpg?v=1634207294', description: 'Stand-Up Pouch: $9.99' },
+            { id: 15, name: 'Pistachios Roasted', category: 'nuts', price: 11.99, oldPrice: 13.99, image: 'https://sumofyum.com/wp-content/uploads/2024/08/Roasted-Pistachios-5811WMTN-500x375.jpg', description: 'Stand-Up Pouch: $11.99' },
+            { id: 16, name: 'Pistachios Saffron', category: 'nuts', price: 16.99, oldPrice: 18.99, image: 'https://www.shutterstock.com/image-photo/salted-pistachios-saffron-bamboo-plate-260nw-534002746.jpg', description: 'Stand-Up Pouch: $16.99' },
+            { id: 17, name: 'Pistachios Unsalted', category: 'nuts', price: 10.99, oldPrice: 12.99, image: 'https://fruitgarden.ng/wp-content/uploads/2023/05/1000773844.jpg', description: 'Stand-Up Pouch: $10.99' },
+            { id: 18, name: 'Pistachios Salted', category: 'nuts', price: 10.99, oldPrice: 12.99, image: 'https://m.media-amazon.com/images/I/51WbIr3TdDL._UF1000,1000_QL80_.jpg', description: 'Stand-Up Pouch: $10.99' },
+            { id: 19, name: 'Cashews Roasted', category: 'nuts', price: 12.99, oldPrice: 14.99, image: 'https://cleanplatemama.com/wp-content/uploads/2023/05/roasted-cashews-thumbnail.jpg', description: 'Stand-Up Pouch: $12.99' },
+            { id: 20, name: 'Cashews White', category: 'nuts', price: 14.99, oldPrice: 16.99, image: 'https://vihaba.global/wp-content/uploads/2021/04/3.w240.jpeg', description: 'Stand-Up Pouch: $14.99' },
+            { id: 32, name: 'Roasted Pine Nuts', category: 'nuts', price: 16.99, oldPrice: 18.99, image: 'https://theheirloompantry.co/wp-content/uploads/2023/03/how-to-toast-pine-nuts-pinoli-on-the-stovetop-or-oven-the-heirloom-pantry-3.jpg', description: 'Stand-Up Pouch: $16.99' },
+            { id: 28, name: 'Sunflower Seeds', category: 'nuts', price: 5.99, oldPrice: 6.99, image: 'https://static.toiimg.com/thumb/resizemode-4,width-1280,height-720,msid-106160081/106160081.jpg', description: 'Stand-Up Pouch: $5.99' },
+            { id: 29, name: 'Pumpkin Seeds', category: 'nuts', price: 6.99, oldPrice: 7.99, image: 'https://images.immediate.co.uk/production/volatile/sites/30/2023/03/Bowl-of-pumpkin-seeds-b4a5510.jpg?quality=90&resize=440,400', description: 'Stand-Up Pouch: $6.99' },
+            { id: 30, name: 'Melon Seeds', category: 'nuts', price: 5.99, oldPrice: 6.99, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyLNuucoXh8bcRbvmZRVvAQX5feqzeEqFq9Q&s', description: 'Stand-Up Pouch: $5.99' },
+            { id: 21, name: 'Chickpeas Roasted', category: 'nuts', price: 6.99, oldPrice: 7.99, image: 'https://www.allrecipes.com/thmb/WdQzwYsrWX0-6zRprlfn7OitWN8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/81548-roasted-chickpeas-ddmfs-0442-1x2-hero-295c03efec90435a8588848f7e50f0bf.jpg', description: 'Stand-Up Pouch: $6.99' },
+            { id: 22, name: 'Chickpeas', category: 'nuts', price: 5.99, oldPrice: 6.99, image: 'https://media.post.rvohealth.io/wp-content/uploads/2021/10/chickpeas-732x549-thumbnail-732x549.jpg', description: 'Stand-Up Pouch: $5.99' },
+            { id: 23, name: 'Sugar Coated Chickpeas', category: 'nuts', price: 7.99, oldPrice: 8.99, image: 'https://www.nutova.com/uploads/products/cover/1233242792leblebi-sekeri.jpg', description: 'Stand-Up Pouch: $7.99' },
+            { id: 31, name: 'Corn', category: 'nuts', price: 1.99, image: 'https://www.seriouseats.com/thmb/1Vl9G52_YL5XdiwK78ylIlQyYfY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/20240717-BoilingCorn-AmandaSuarez-SEA-f80166320b364edbbea05d65e538e270.jpg', description: 'Stand-Up Pouch: $1.99' },
             // Dried Fruits
-            { id: 24, name: 'Raisins Green', category: 'dried-fruits', price: 7.99, oldPrice: 8.99, image: 'https://images.unsplash.com/photo-1597848212624-e9f912c737a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $7.99' },
-            { id: 25, name: 'Raisins Red', category: 'dried-fruits', price: 7.99, oldPrice: 8.99, image: 'https://images.unsplash.com/photo-1597848212624-e9f912c737a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $7.99' },
-            { id: 26, name: 'Raisins Black', category: 'dried-fruits', price: 7.99, oldPrice: 8.99, image: 'https://images.unsplash.com/photo-1597848212624-e9f912c737a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $7.99' },
-            { id: 27, name: 'Raisins Golden', category: 'dried-fruits', price: 8.99, oldPrice: 9.99, image: 'https://images.unsplash.com/photo-1597848212624-e9f912c737a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $8.99' },
-            { id: 28, name: 'Dried Black Berry', category: 'dried-fruits', price: 11.99, oldPrice: 12.99, image: 'https://images.unsplash.com/photo-1574082238888-1d373f1e5e2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $11.99' },
-            { id: 29, name: 'Dried White Berry', category: 'dried-fruits', price: 13.99, oldPrice: 14.99, image: 'https://images.unsplash.com/photo-1574082238888-1d373f1e5e2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $13.99' },
-            { id: 30, name: 'Dried Figs - type A', category: 'dried-fruits', price: 9.99, oldPrice: 10.99, image: 'https://images.unsplash.com/photo-1601056639636-eca6a4a22ac9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $9.99' },
-            { id: 31, name: 'Dried Figs - type B', category: 'dried-fruits', price: 10.99, oldPrice: 11.99, image: 'https://images.unsplash.com/photo-1601056639636-eca6a4a22ac9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $10.99' },
-            { id: 32, name: 'Dried Plum', category: 'dried-fruits', price: 8.99, oldPrice: 9.99, image: 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $8.99' },
-            { id: 33, name: 'Dried Apricots', category: 'dried-fruits', price: 10.99, oldPrice: 11.99, image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d5a52?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80', description: 'Stand-Up Pouch: $10.99' }
+            { id: 24, name: 'Raisins Green', category: 'dried-fruits', price: 7.99, oldPrice: 8.99, image: 'https://www.urbantray.in/wp-content/uploads/2022/05/Afghan-Green-Raisin-Long.jpg', description: 'Stand-Up Pouch: $7.99' },
+            { id: 25, name: 'Raisins Red', category: 'dried-fruits', price: 7.99, oldPrice: 8.99, image: 'https://media.post.rvohealth.io/wp-content/uploads/2020/09/Organic-Goji-berries-732x549-thumbnail-732x549.jpg', description: 'Stand-Up Pouch: $7.99' },
+            { id: 26, name: 'Raisins Black', category: 'dried-fruits', price: 7.99, oldPrice: 8.99, image: 'https://static-01.daraz.com.bd/p/c081730fd6b388c1c8c5e0112fb45a1d.jpg', description: 'Stand-Up Pouch: $7.99' },
+            { id: 27, name: 'Raisins Golden', category: 'dried-fruits', price: 8.99, oldPrice: 9.99, image: 'https://nomadlarder.co.uk/wp-content/uploads/2023/04/Golden-raisins.jpg', description: 'Stand-Up Pouch: $8.99' },
+            { id: 28, name: 'Dried Black Berry', category: 'dried-fruits', price: 11.99, oldPrice: 12.99, image: 'https://nuts.com/images/rackcdn/ed910ae2d60f0d25bcb8-80550f96b5feb12604f4f720bfefb46d.ssl.cf1.rackcdn.com/aa7a32a997acf254-N_BkSSkb-large.jpg', description: 'Stand-Up Pouch: $11.99' },
+            { id: 29, name: 'Dried White Berry', category: 'dried-fruits', price: 13.99, oldPrice: 14.99, image: 'https://wp.foodinbulk.com/wp-content/uploads/2021/08/Dried_White_Mulberries-min.jpg', description: 'Stand-Up Pouch: $13.99' },
+            { id: 30, name: 'Dried Figs - type A', category: 'dried-fruits', price: 9.99, oldPrice: 10.99, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6bw6j3RFdHvjiFGeGwD8w59DYl7s7osmHbA&s', description: 'Stand-Up Pouch: $9.99' },
+            { id: 31, name: 'Dried Figs - type B', category: 'dried-fruits', price: 10.99, oldPrice: 11.99, image: 'https://5.imimg.com/data5/SELLER/Default/2024/5/415991923/MC/XM/AE/124651244/organic-brown-dry-fig.jpg', description: 'Stand-Up Pouch: $10.99' },
+            { id: 32, name: 'Dried Plum', category: 'dried-fruits', price: 8.99, oldPrice: 9.99, image: 'https://regalesdelight.com/cdn/shop/files/l-intro-1621017304.webp?v=1682404087', description: 'Stand-Up Pouch: $8.99' },
+            { id: 33, name: 'Dried Apricots', category: 'dried-fruits', price: 10.99, oldPrice: 11.99, image: 'https://www.dccbazar.com.bd/images/detailed/12/1623695523_d8a7e951-31fb-4a4c-a1_szz3-cv.jpg', description: 'Stand-Up Pouch: $10.99' }
         ];
 
         // Most visited products (selected popular ones)
@@ -1639,26 +1857,91 @@
                 button.addEventListener('click', addToCartHandler);
             });
         }
+
+        // Cart Sidebar Elements
+const cartSidebar = document.getElementById('cartSidebar');
+const cartOverlay = document.getElementById('cartOverlay');
+const closeCart = document.getElementById('closeCart');
+const cartIcon = document.querySelector('.header-actions a[aria-label="Shopping Cart"]');
+
+// Open cart
+cartIcon.addEventListener('click', (e) => {
+  e.preventDefault();
+  cartSidebar.classList.add('active');
+  cartOverlay.classList.add('active');
+});
+
+// Close cart
+closeCart.addEventListener('click', () => {
+  cartSidebar.classList.remove('active');
+  cartOverlay.classList.remove('active');
+});
+cartOverlay.addEventListener('click', () => {
+  cartSidebar.classList.remove('active');
+  cartOverlay.classList.remove('active');
+});
+
+// Render Cart
+function renderCart() {
+  const cartItemsContainer = document.getElementById('cartItems');
+  const cartTotal = document.getElementById('cartTotal');
+  
+  cartItemsContainer.innerHTML = '';
+  let total = 0;
+  
+  cart.forEach(item => {
+    total += item.price * (item.quantity || 1);
+    
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML = `
+      <img src="${item.image}" alt="${item.name}">
+      <div style="flex:1">
+        <p style="font-weight:600">${item.name}</p>
+        <p>$${item.price.toFixed(2)} x ${item.quantity || 1}</p>
+      </div>
+      <button onclick="removeFromCart(${item.id})">&times;</button>
+    `;
+    cartItemsContainer.appendChild(div);
+  });
+  
+  cartTotal.textContent = `$${total.toFixed(2)}`;
+  cartCount.textContent = cart.length;
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(item => item.id !== id);
+  renderCart();
+}
+
         
-        // Add to cart handler
-        const cartCount = document.querySelector('.cart-count');
-        let count = 3; // Starting with 3 items in cart as shown in the design
-        
-        function addToCartHandler(e) {
-            const productId = e.target.getAttribute('data-id');
-            count++;
-            cartCount.textContent = count;
-            
-            // Visual feedback
-            const originalText = e.target.innerHTML;
-            e.target.innerHTML = '<i class="fas fa-check"></i> Added';
-            e.target.disabled = true;
-            
-            setTimeout(() => {
-                e.target.innerHTML = originalText;
-                e.target.disabled = false;
-            }, 2000);
-        }
+ // Add to cart handler
+function addToCartHandler(e) {
+  const productId = e.target.getAttribute('data-id');
+  const product = products.find(p => p.id == productId);
+
+  // If already in cart, increase quantity
+  const existing = cart.find(item => item.id == productId);
+  if (existing) {
+    existing.quantity = (existing.quantity || 1) + 1;
+  } else {
+    cart.push({ ...product, quantity: 1 });
+  }
+
+  renderCart();
+
+  // Visual feedback
+  const originalText = e.target.innerHTML;
+  e.target.innerHTML = '<i class="fas fa-check"></i> Added';
+  e.target.disabled = true;
+
+  setTimeout(() => {
+    e.target.innerHTML = originalText;
+    e.target.disabled = false;
+  }, 2000);
+}
+
         
         // Hero slider functionality
         const heroSlides = document.querySelectorAll('.hero-slide');
@@ -1837,6 +2120,272 @@
         
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', init);
-    </script>
+    
+
+
+
+
+// CART FUNCTIONALITY (FIXED & ROBUST)
+// Behavior:
+// - Clicking "Add" only adds the product to the cart and does NOT open the sidebar.
+// - The Add button becomes "Added" and stays disabled while the product remains in the cart.
+// - The cart panel opens only when the cart icon is clicked.
+// - "Clear All" button in the cart footer removes all items (with confirm).
+// - Cart persists in localStorage under key 'cart'.
+// - If `products` array exists in the page we'll use it; otherwise we'll read product info from the DOM card.
+
+(function () {
+  const CART_KEY = 'cart';
+  let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+
+  const cartCountEl = document.querySelector('.cart-count');
+  const cartSidebarEl = document.getElementById('cartSidebar');
+  const cartOverlayEl = document.getElementById('cartOverlay');
+  const closeCartBtnEl = document.getElementById('closeCart') || document.querySelector('.close-cart') || null;
+  const cartIconEl = document.querySelector('.header-actions a[aria-label="Shopping Cart"], .cart-toggle, .cart-icon');
+
+  function saveCart() {
+    try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) { console.warn('Failed to save cart', e); }
+  }
+
+  function updateAddButtons() {
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      const pid = button.getAttribute('data-id');
+      const exists = cart.some(i => String(i.id) === String(pid));
+      if (exists) {
+        button.innerHTML = '<i class="fas fa-check"></i> Added';
+        button.disabled = true;
+        button.classList.add('added');
+      } else {
+        button.innerHTML = '<i class="fas fa-shopping-cart"></i> Add';
+        button.disabled = false;
+        button.classList.remove('added');
+      }
+    });
+  }
+
+  function renderCart() {
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cartTotalEl = document.getElementById('cartTotal');
+
+    if (!cartItemsContainer || !cartTotalEl) return;
+
+    cartItemsContainer.innerHTML = '';
+    let total = 0;
+
+    cart.forEach(item => {
+      total += (item.price || 0) * (item.quantity || 1);
+
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `
+        <img src="${item.image || ''}" alt="${item.name || ''}">
+        <div class="details">
+          <p class="name">${item.name || ''}</p>
+          <div class="cart-actions">
+            <button class="qty-btn" data-id="${item.id}" data-change="-1">-</button>
+            <span class="cart-qty">${item.quantity}</span>
+            <button class="qty-btn" data-id="${item.id}" data-change="1">+</button>
+            <span>$${(item.price * item.quantity).toFixed(2)}</span>
+            <button class="remove-btn" data-id="${item.id}">&times;</button>
+          </div>
+        </div>
+      `;
+      cartItemsContainer.appendChild(div);
+    });
+
+    cartTotalEl.textContent = `$${total.toFixed(2)}`;
+    if (cartCountEl) cartCountEl.textContent = cart.reduce((s, i) => s + (i.quantity || 0), 0);
+
+    saveCart();
+    updateAddButtons();
+  }
+
+  // Helper: find product object by id
+  function findProductById(pid, addBtn) {
+    // Prefer products variable if present
+    try {
+      if (typeof products !== 'undefined' && Array.isArray(products)) {
+        const p = products.find(p => String(p.id) === String(pid));
+        if (p) return p;
+      }
+    } catch (e) {
+      // ignore
+    }
+    // Next try window.products
+    try {
+      if (window.products && Array.isArray(window.products)) {
+        const p = window.products.find(p => String(p.id) === String(pid));
+        if (p) return p;
+      }
+    } catch (e) {}
+
+    // Fallback: extract from DOM using the button's closest product card
+    if (addBtn) {
+      const card = addBtn.closest('.product-card, .product, .card');
+      if (card) {
+        const name = (card.querySelector('h3, .product-title, .name') || {}).textContent || '';
+        // price may include old price; fetch numeric value from .price text
+        const priceText = (card.querySelector('.price') || {}).textContent || '';
+        const price = parseFloat(priceText.replace(/[^0-9.]/g, '')) || 0;
+        const imgEl = card.querySelector('img');
+        const image = imgEl ? imgEl.src : '';
+        const description = (card.querySelector('.product-details p, .description, p') || {}).textContent || '';
+        return { id: pid, name: name.trim(), price, image, description };
+      }
+    }
+    // ultimate fallback minimal object
+    return { id: pid, name: 'Product ' + pid, price: 0, image: '', description: '' };
+  }
+
+  // Add to cart (delegated)
+  document.addEventListener('click', function (e) {
+    const addBtn = e.target.closest('.add-to-cart');
+    if (addBtn) {
+      const pid = addBtn.getAttribute('data-id');
+      if (!pid) return;
+      const exists = cart.find(i => String(i.id) === String(pid));
+      if (exists) {
+        // Already present -> ensure UI shows added/disabled
+        addBtn.innerHTML = '<i class="fas fa-check"></i> Added';
+        addBtn.disabled = true;
+        return;
+      }
+
+      const product = findProductById(pid, addBtn);
+      if (!product) {
+        console.warn('Product not found for id', pid);
+        return;
+      }
+
+      // Push to cart with default quantity 1
+      cart.push({ ...product, quantity: 1 });
+      renderCart();
+
+      // update button UI
+      addBtn.innerHTML = '<i class="fas fa-check"></i> Added';
+      addBtn.disabled = true;
+      return;
+    }
+
+    // Quantity buttons (delegated)
+    const qtyBtn = e.target.closest('.qty-btn');
+    if (qtyBtn) {
+      const pid = qtyBtn.getAttribute('data-id');
+      const change = Number(qtyBtn.getAttribute('data-change') || 0);
+      const item = cart.find(i => String(i.id) === String(pid));
+      if (!item) return;
+      item.quantity = (item.quantity || 1) + change;
+      if (item.quantity <= 0) {
+        cart = cart.filter(i => String(i.id) !== String(pid));
+      }
+      renderCart();
+      return;
+    }
+
+    // Remove button (delegated)
+    const removeBtn = e.target.closest('.remove-btn');
+    if (removeBtn) {
+      const pid = removeBtn.getAttribute('data-id');
+      cart = cart.filter(i => String(i.id) !== String(pid));
+      renderCart();
+      return;
+    }
+
+    // Clear All button
+    if (e.target && e.target.id === 'clearCartBtn') {
+      if (!cart.length) return;
+      if (!confirm('Clear all items from the cart?')) return;
+      cart = [];
+      renderCart();
+      return;
+    }
+  });
+
+  // Ensure cart footer has a Clear All button (inject if missing)
+  function ensureClearButton() {
+    if (!cartSidebarEl) return;
+    let footer = cartSidebarEl.querySelector('.cart-footer');
+    if (!footer) {
+      footer = document.createElement('div');
+      footer.className = 'cart-footer';
+      footer.innerHTML = `
+        <p>Total: <span id="cartTotal">$0.00</span></p>
+        <div style="display:flex; gap:8px;">
+          <button id="clearCartBtn" class="clear-btn">Clear All</button>
+          <button class="checkout-btn">Checkout</button>
+        </div>
+      `;
+      cartSidebarEl.appendChild(footer);
+      return;
+    }
+
+    if (!footer.querySelector('#cartTotal')) {
+      const totalP = document.createElement('p');
+      totalP.innerHTML = 'Total: <span id="cartTotal">$0.00</span>';
+      footer.insertAdjacentElement('afterbegin', totalP);
+    }
+    if (!footer.querySelector('#clearCartBtn')) {
+      const clearBtn = document.createElement('button');
+      clearBtn.id = 'clearCartBtn';
+      clearBtn.className = 'clear-btn';
+      clearBtn.textContent = 'Clear All';
+      const checkoutBtn = footer.querySelector('.checkout-btn');
+      if (checkoutBtn) checkoutBtn.insertAdjacentElement('beforebegin', clearBtn);
+      else footer.appendChild(clearBtn);
+    }
+  }
+
+  // Open/Close cart functions (cart opens only when icon clicked)
+  function openCart() {
+    if (cartSidebarEl) cartSidebarEl.classList.add('active');
+    if (cartOverlayEl) cartOverlayEl.classList.add('active');
+    renderCart();
+  }
+  function closeCart() {
+    if (cartSidebarEl) cartSidebarEl.classList.remove('active');
+    if (cartOverlayEl) cartOverlayEl.classList.remove('active');
+  }
+
+  // Wire cart icon to open cart
+  if (cartIconEl) {
+    cartIconEl.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      openCart();
+    });
+  }
+
+  // Wire close buttons
+  if (closeCartBtnEl) closeCartBtnEl.addEventListener('click', closeCart);
+  if (cartOverlayEl) cartOverlayEl.addEventListener('click', closeCart);
+
+  // initialize
+  ensureClearButton();
+  renderCart();
+  window._shopCart = { renderCart, openCart, closeCart, getCart: () => cart };
+})();
+
+</script>
+    <!-- Cart Overlay -->
+<div class="cart-overlay" id="cartOverlay"></div>
+
+<!-- Cart Sidebar -->
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="close-cart" id="closeCart">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <!-- JS will inject cart items here -->
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total:</span>
+      <strong id="cartTotal">$0.00</strong>
+    </div>
+    <button class="checkout-btn">Checkout</button>
+  </div>
+</div>
+
 </body>
 </html>
