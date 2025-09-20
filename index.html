@@ -1664,7 +1664,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Shah Dry Fruits. Made by TYF Sadik and Tahmid Ahnaf All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                <p>&copy; 2025 Shah Dry Fruits. Made by TYF Sadik & MD. Tahmid Ahnaf All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
             </div>
         </div>
     
@@ -2364,6 +2364,16 @@ function addToCartHandler(e) {
   renderCart();
   window._shopCart = { renderCart, openCart, closeCart, getCart: () => cart };
 })();
+
+
+  // Checkout button handler - call phone number
+  document.addEventListener("click", function(e) {
+    const checkoutBtn = e.target.closest(".checkout-btn");
+    if (checkoutBtn) {
+      e.preventDefault();
+      window.location.href = "tel:+16472219327";
+    }
+  });
 
 </script>
     <!-- Cart Overlay -->
